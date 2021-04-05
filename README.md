@@ -40,8 +40,18 @@ $5 = NUM_MINIONS= # Aqui o nr de workers que irão rodar no cluster
 
 Exemplo de chamada do script:
 ```
-sudo sh install-kube-spark.sh aws us-east-1 t2.micro t2.micro 3
+sh install-kube-spark.sh aws us-east-1 t2.micro t2.micro 3
+
+sh install-kube-spark.sh gcp us-east1-b n1-standard-1 n1-standard-1 3
 ``` 
 
 ### A partir desse ponto voce deve estar com o cluster instalado. Agora iremos configurar os nós do Spark para executar o job desejado 
 
+
+kubectl create -f examples/spark/spark-master.json
+
+kubectl create -f examples/spark/spark-master-service.json
+
+kubectl create -f examples/spark/spark-worker-controller.json
+
+kubectl create -f examples/spark/spark-driver.json

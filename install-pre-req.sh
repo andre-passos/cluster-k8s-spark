@@ -22,8 +22,8 @@ case "$1" in
         echo "Install GCP Pre-Reqs"
         curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-334.0.0-linux-x86_64.tar.gz
         tar -zxvf google-cloud-sdk-334.0.0-linux-x86_64.tar.gz
-        sudo sh ./google-cloud-sdk/install.sh
-        sudo sh ./google-cloud-sdk/bin/gcloud init
+        sh ./google-cloud-sdk/install.sh
+        sh ./google-cloud-sdk/bin/gcloud init
 
     ;;
     *)
@@ -31,5 +31,5 @@ case "$1" in
     ;;
 esac
 
-wget https://storage.googleapis.com/kubernetes-release/release/v1.1.3/kubernetes.tar.gz
+wget https://storage.googleapis.com/kubernetes-release/release/v1.20.0/kubernetes.tar.gz
 tar -xzvf kubernetes.tar.gz
