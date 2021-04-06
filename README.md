@@ -47,11 +47,31 @@ sh install-kube-spark.sh gcp us-east1-b n1-standard-1 n1-standard-1 3
 
 ### A partir desse ponto voce deve estar com o cluster instalado. Agora iremos configurar os nós do Spark para executar o job desejado 
 
+kubectl create ns spark-job
 
-kubectl create -f examples/spark/spark-master.json
+kubectl create -f ./spark/spark-master.json -n spark-job
 
-kubectl create -f examples/spark/spark-master-service.json
+kubectl create -f ./spark/spark-master-service.json -n spark-job
 
-kubectl create -f examples/spark/spark-worker-controller.json
+kubectl create -f ./spark/spark-worker-controller.json -n spark-job
 
-kubectl create -f examples/spark/spark-driver.json
+kubectl create -f ./spark/spark-driver.json -n spark-job
+
+#### Use o comando abaixo para verificar qual o endereço do Spark Master:
+
+ kubectl logs spark-master -n spark-job|grep MasterWebUI
+
+
+### Agora com o cluster criado, iremos executar um job de teste para ver se tudo está rodando como o esperado:
+
+kubectl exec -n spark-job spark-master -- /opt/spark-1.4.0-bin-hadoop2.6/bin/run-example JavaPageRank /opt/spark-1.4.0-bin-hadoop2.6/data/mllib/pagerank_data.txt 10
+
+´
+### Com isso, podemos executar qualquer job no cluster, bastando apontar o script spark desejado.
+`
+
+## Apos executar, podemos usar o script abaixo para excluir o cluster completamente do servico de nuvem:
+
+```
+./kubernetes/cluster/kube-down.sh
+```
