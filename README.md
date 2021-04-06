@@ -8,7 +8,7 @@ Exemplo:
 ```
 # sudo sh install-pre-req.sh aws|gcp
 ```
-Após a execução do script, voce irá ja ter baixado o pacote instalador do kubernetes. Nele voce irá configurar os parametros necessarios para subir seu ambiente.
+Após a execução do script, voce irá ter baixado o pacote instalador do kubernetes. Nele voce irá configurar os parametros necessarios para subir seu ambiente.
 
 Após realizada a instalacao dos pré-reqs, voce precisará configurar a CLI da nuvem, para isso, crie as entradas de autenticacao na nuvem desejada conforme padrao de cada CLI:
 
@@ -46,6 +46,10 @@ sh install-kube-spark.sh gcp us-east1-b n1-standard-1 n1-standard-1 3
 ``` 
 
 ### A partir desse ponto voce deve estar com o cluster instalado. Agora iremos configurar os nós do Spark para executar o job desejado 
+---
+TBD: Criar script de subida do cluster Spark
+
+---
 
 kubectl create ns spark-job
 
